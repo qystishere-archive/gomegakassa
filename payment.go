@@ -79,7 +79,7 @@ func (p *Payment) Raw() map[string]string {
 		"description": p.Description,
 
 		"currency": p.Currency,
-		"amount":   fmt.Sprintf("%f", p.Amount),
+		"amount":   fmt.Sprintf("%.2f", p.Amount),
 
 		"order_id":  p.OrderID,
 		"method_id": p.MethodID,
