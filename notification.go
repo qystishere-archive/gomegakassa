@@ -5,7 +5,7 @@ import (
 )
 
 type Notification struct {
-	ID uint32
+	UID string
 
 	Amount       float32
 	AmountShop   float32

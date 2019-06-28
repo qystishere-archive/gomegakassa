@@ -85,11 +85,6 @@ func (s *Shop) Verify(formParams map[string]string) (*Notification, error) {
 		return nil, ErrBadSignature
 	}
 
-	id, err := strconv.ParseInt(formParams["uid"], 32, 8)
-	if err != nil {
-		return nil, wrapParseError("uid", err)
-	}
-
 	amount, err := strconv.ParseFloat(formParams["amount"], 32)
 	if err != nil {
 		return nil, wrapParseError("amount", err)
@@ -126,7 +121,7 @@ func (s *Shop) Verify(formParams map[string]string) (*Notification, error) {
 	}
 
 	n := &Notification{
-		ID: uint32(id),
+		UID: formParams["uid"],
 
 		Amount:       float32(amount),
 		AmountShop:   float32(amountShop),
