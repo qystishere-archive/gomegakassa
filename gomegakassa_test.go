@@ -59,12 +59,24 @@ func TestNotification(t *testing.T) {
 		"client_email":         "test@test.ru",
 		"status":               "success",
 		"debug":                "1",
+		"p_user_id":            "23",
 		// sign must be
-		"signature":            "79a34b4b5cc604f79e74fe2a88682240",
+		"signature": "79a34b4b5cc604f79e74fe2a88682240",
 	}
 
-	_, err := mk.Verify(formParams)
+	notification, err := mk.Verify(formParams)
 	if err != nil {
 		t.Errorf(err.Error())
+
+		return
+	}
+
+	userID := notification.GetParam("user_id")
+	userIDMustBe := "23"
+
+	if userID != userIDMustBe {
+		t.Errorf("can't get user_id from notification (%s != %s)", userID, userIDMustBe)
+
+		return
 	}
 }
