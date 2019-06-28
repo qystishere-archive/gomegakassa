@@ -22,8 +22,17 @@ type Notification struct {
 
 	Debug bool
 
-	Params map[string]string
+	Params Params
 
 	CreatedAt time.Time
 	PaidAt    *time.Time
+}
+
+func (n *Notification) GetParam(name string) string {
+	v, ok := n.Params["p_" + name]
+	if !ok {
+		return ""
+	}
+
+	return v
 }

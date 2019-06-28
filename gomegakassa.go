@@ -1,5 +1,7 @@
 package gomegakassa
 
+type Params map[string]string
+
 type GoMegakassa struct {
 	*Shop
 }

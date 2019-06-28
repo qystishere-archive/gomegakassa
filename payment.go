@@ -22,7 +22,7 @@ type Payment struct {
 
 	Language string
 
-	Params map[string]string
+	Params Params
 
 	shop *Shop
 }
@@ -43,7 +43,7 @@ type PaymentConfig struct {
 
 	Language string
 
-	Params map[string]string
+	Params Params
 }
 
 func (p *Payment) Sign() string {
@@ -72,7 +72,7 @@ func (p *Payment) Raw() map[string]string {
 	if p.shop == nil {
 		return map[string]string{}
 	}
-	
+
 	m := map[string]string{
 		"shop_id": fmt.Sprintf("%d", p.shop.ID),
 
