@@ -85,7 +85,7 @@ func (s *Shop) Verify(formParams map[string]string) (*Notification, error) {
 		return nil, ErrBadSignature
 	}
 
-	id, err := strconv.ParseUint(formParams["uid"], 32, 8)
+	id, err := strconv.ParseInt(formParams["uid"], 32, 8)
 	if err != nil {
 		return nil, wrapParseError("uid", err)
 	}
