@@ -25,8 +25,8 @@ type Shop struct {
 	SecretKey string
 }
 
-func (s *Shop) NewPayment(cfg *PaymentConfig) *payment {
-	p := &payment{
+func (s *Shop) NewPayment(cfg *PaymentConfig) *Payment {
+	p := &Payment{
 		ShopID: s.ID,
 
 		Description: cfg.Description,

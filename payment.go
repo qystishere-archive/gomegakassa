@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-type payment struct {
+type Payment struct {
 	ShopID uint32
 
 	Description string
@@ -46,7 +46,11 @@ type PaymentConfig struct {
 	Params map[string]string
 }
 
-func (p *payment) Sign() string {
+func (p *Payment) Sign() string {
+	if p.shop == nil {
+		return ""
+	}
+
 	return md5(fmt.Sprintf(
 		"%s%s",
 		p.shop.SecretKey,
@@ -64,7 +68,11 @@ func (p *payment) Sign() string {
 	))
 }
 
-func (p *payment) Raw() map[string]string {
+func (p *Payment) Raw() map[string]string {
+	if p.shop == nil {
+		return map[string]string{}
+	}
+	
 	m := map[string]string{
 		"shop_id": fmt.Sprintf("%d", p.shop.ID),
 
