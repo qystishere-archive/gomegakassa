@@ -1,0 +1,1 @@
+# Megakassa API wrapper
