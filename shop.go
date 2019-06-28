@@ -100,7 +100,7 @@ func (s *Shop) Verify(formParams map[string]string) (*Notification, error) {
 		return nil, wrapParseError("amount_client", err)
 	}
 
-	paymentMethodID, err := strconv.ParseInt(formParams["payment_method_id"], 32, 8)
+	paymentMethodID, err := strconv.ParseInt(formParams["payment_method_id"], 10, 32)
 	if err != nil {
 		return nil, wrapParseError("payment_method_id", err)
 	}
