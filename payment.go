@@ -76,6 +76,8 @@ func (p *Payment) Raw() map[string]string {
 	m := map[string]string{
 		"shop_id": fmt.Sprintf("%d", p.shop.ID),
 
+		"description": p.Description,
+
 		"currency": p.Currency,
 		"amount":   fmt.Sprintf("%f", p.Amount),
 
