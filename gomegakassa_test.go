@@ -45,5 +45,26 @@ func TestPayment(t *testing.T) {
 }
 
 func TestNotification(t *testing.T) {
-	// TODO
+	formParams := map[string]string{
+		"uid":                  "1",
+		"amount":               "122",
+		"amount_shop":          "120",
+		"amount_client":        "125",
+		"currency":             "RUB",
+		"order_id":             "1",
+		"payment_method_id":    "1",
+		"payment_method_title": "QIWI",
+		"creation_time":        "2005-08-09T00:00:00Z",
+		"payment_time":         "2006-08-09T00:00:00Z",
+		"client_email":         "test@test.ru",
+		"status":               "success",
+		"debug":                "1",
+		// sign must be
+		"signature":            "79a34b4b5cc604f79e74fe2a88682240",
+	}
+
+	_, err := mk.Verify(formParams)
+	if err != nil {
+		t.Errorf(err.Error())
+	}
 }
