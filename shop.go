@@ -2,8 +2,8 @@ package gomegakassa
 
 import (
 	"errors"
-	"fmt"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -74,13 +74,12 @@ func (s *Shop) Verify(formParams map[string]string) (*Notification, error) {
 		}
 	}
 
-	sign := md5(fmt.Sprintf("%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s",
+	sign := md5(strings.Join([]string{
 		formParams["uid"], formParams["amount"], formParams["amount_shop"], formParams["amount_client"],
 		formParams["currency"], formParams["order_id"], formParams["payment_method_id"], formParams["payment_method_title"],
 		formParams["creation_time"], formParams["payment_time"], formParams["client_email"], formParams["status"],
 		formParams["debug"], s.SecretKey,
-	))
-
+	}, ":"))
 	if sign != formParams["signature"] {
 		return nil, ErrBadSignature
 	}
